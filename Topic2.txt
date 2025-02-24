@@ -1,0 +1,55 @@
+Topic 2: Writing Simple SQL Queries for Testing
+Subtopic a: Data Validation – Verifying Data with SELECT Queries
+==================================================================
+🔹 Why Use SQL for Testing?
+
+To check if the data stored in the database is correct.
+To validate if an application is saving/updating data correctly.
+✅ Example: Retrieve all users to validate data
+
+sql
+SELECT * FROM Users;
+✅ Example: Check if an order exists for a user (UserID = 1)
+
+sql
+SELECT * FROM Orders WHERE UserID = 1;
+Subtopic b: WHERE Clause in Testing – Writing Queries for Expected Results
+🔹 WHERE clause helps filter data
+✅ Example: Check if a user named "John" exists
+
+sql
+SELECT * FROM Users WHERE Name = 'John';
+✅ Example: Find all orders greater than ₹400
+
+sql
+SELECT * FROM Orders WHERE OrderAmount > 400;
+✅ Example: Verify if users above 30 years exist
+
+sql
+SELECT * FROM Users WHERE Age > 30;
+Subtopic c: Test Cases for Database – Designing Simple Test Scenarios
+🔹 Common Test Scenarios in Database Testing:
+
+Test Case	                                        Expected Result
+Verify if a new user is saved in the Users table	User should be present in the table
+Verify if an order amount is updated correctly  	The OrderAmount should reflect the new value
+Check if deleting a user removes associated orders  The corresponding orders should also be deleted
+(if cascade delete is enabled) 	
+Validate if duplicate primary keys can be inserted	Should give an error (Primary Key Constraint)
+
+✅ Example Test Case: Check if a user is inserted successfully
+sql
+INSERT INTO Users (UserID, Name, Age) VALUES (4, 'David', 32);
+SELECT * FROM Users WHERE Name = 'David';
+
+✅ Example Test Case: Check if an order amount updates correctly
+sql
+UPDATE Orders SET OrderAmount = 600 WHERE OrderID = 101;
+SELECT * FROM Orders WHERE OrderID = 101;
+
+✅ Summary of What You Learned Today:
+✔ Database Basics – Tables, Rows, Columns.
+✔ Schema & Relationships – Primary Key, Foreign Key.
+✔ Validating Data – Using SELECT Queries.
+✔ Testing with WHERE Clause – Writing queries to verify expected data.
+✔ Test Cases for DB Testing – Basic test scenarios.

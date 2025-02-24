@@ -1,0 +1,59 @@
+Topic 1: Database Fundamentals & Schema Design
+Subtopic a: Database Basics – Tables, Rows, and Columns
+====================================================================
+🔹 What is a Database?
+A database is an organized collection of data that is stored and accessed electronically.
+
+🔹 Key Components of a Database:
+✔ Table – A collection of data organized into rows and columns.
+✔ Row (Record) – A single entry in a table.
+✔ Column (Field) – A specific attribute of a record.
+
+📌 Example Table: Users
+
+UserID	Name	Age	Email
+1	John	30	john@example.com
+2	Alice	28	alice@example.com
+3	Mark	35	mark@example.com
+Each row represents a user, and each column represents a data attribute.
+
+Subtopic b: Schema & Relationships – Primary & Foreign Keys
+===========================================================================
+🔹 What is a Database Schema?
+A schema defines the structure of the database, including tables, columns, and relationships.
+
+🔹 Keys in a Database:
+✔ Primary Key (PK) – A unique identifier for each record in a table.
+✔ Foreign Key (FK) – A column that links to the primary key of another table.
+
+📌 Example of Primary & Foreign Key Relationship:
+1️⃣ Users Table (Parent Table)
+
+UserID (PK)	Name	Age
+1	John	30
+2	Alice	28
+2️⃣ Orders Table (Child Table, with FK to Users Table)
+
+OrderID	UserID (FK)	OrderAmount
+101	1	500
+102	2	300
+🔹 One-to-Many Relationship Example:
+
+One user can have multiple orders (John placed order 101, Alice placed order 102).
+✅ SQL Query to Create a Relationship:
+
+sql
+Copy
+Edit
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    UserID INT,
+    OrderAmount DECIMAL(10,2),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
